@@ -38,7 +38,8 @@ let flock;
 let settings = { 
   Play: function(){ play=true; },
   Pause: function(){ play=false; },
-  Reset: function(){ init()},
+  Reset: function(){ init() },
+  n: 50,
   Sep: 1,
   Alig: .5, 
   Coh: .5,
@@ -51,6 +52,7 @@ function gui(){
     gui.add(settings,'Play');
     gui.add(settings,'Pause');
     gui.add(settings,'Reset');
+    gui.add(settings, 'n', 1, 200).onChange((value) => setFlocks(value));
     gui.add(settings,'Sep', 0, 1).step(0.1);
     gui.add(settings,'Alig', 0, 1).step(0.1);
     gui.add(settings,'Coh', 0, 1).step(0.1);
@@ -58,18 +60,13 @@ function gui(){
 
 function setup() {
     gui();
-    canvas = createCanvas(720, 400);
+    createCanvas(720, 400);
     width = this.width;
     height = this.height;    
 
     // Initialize the env
     init();
 
-    canvas.mousePressed(
-        () => {
-            flock.addBoid(new Boid(mouseX, mouseY));
-        }
-    )
 }
 
 function init(){
@@ -96,4 +93,15 @@ function draw(){
     // Render the flock
     flock.render();
     
+}
+
+function setFlocks(new_lenght){
+    if(new_lenght > flock.boids.length){
+        for (let i = 0; i < new_lenght - flock.boids.length; i++) {
+            x = Math.floor(Math.random() * width);
+            y = Math.floor(Math.random() * height);
+            flock.addBoid(new Boid(x, y));
+        }
+    }else
+        flock.boids = flock.boids.slice(0, new_lenght);
 }
