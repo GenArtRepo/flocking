@@ -66,26 +66,26 @@ function setup() {
 
     // Initialize the env
     init();
-
 }
 
 function init(){
     
     flock = new Flock();
     // Add an initial set of boids into the system
-    for (let i = 0; i < 50; i++) {
-        let boid = new Boid(width/2, height/2);
+    for (let i = 0; i < 200; i++) {
+        // let boid = new Boid(width/2, height/2);
+        let boid = new Boid(random(canvas.width), random(canvas.height));
         flock.addBoid(boid);
     }
 }
 
 function draw(){
-    background(255);
+    background(20);
     frameRate(60);
 
     // External borders
     stroke(0);
-    fill(255);
+    fill(20);
     rect(0, 0, width, height);
     
     // Executes the flock behaviour
