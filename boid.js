@@ -8,7 +8,7 @@ class Boid {
         // Null Acelleration
         this.acceleration = createVector(0, 0); 
         // Triangule figure base
-        this.base = 10; 
+        this.base = 6; 
         // Maximun distance of view 
         this.neighbordist = 50;
 
@@ -162,10 +162,12 @@ class Boid {
         if (this.position.y > height + this.base) this.position.y = -this.base;
     }
   
-    // This function draws a triangule in the direction that the boid is heading
+    // This function draws a triangle in the direction that the boid is heading
     render(){ 
-        fill("#006DAE");
-        stroke("#006DAE");
+        // fill("#006DAE");
+        fill(220);
+        // stroke("#006DAE");
+        noStroke();
         push();
         translate(this.position.x, this.position.y); // translate the reference axis to the boid position
         rotate(this.velocity.heading()); // rotate the reference axis to the boid direction
