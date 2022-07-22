@@ -74,7 +74,7 @@ class Boid {
             }
         })
 
-         // Implement Reynolds: Steering = Desired - Velocity
+        // Implement Reynolds: Steering = Desired - Velocity
         if (count > 0) {
             sum.div(count);
             sum.normalize();
